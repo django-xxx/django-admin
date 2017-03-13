@@ -26,3 +26,15 @@ Usage
             obj.delete()
             # Other Codes
 
+    class YYYAdmin(admin.ModelAdmin):
+        actions = ['delete_selected']
+
+
+Disadvantage
+============
+
+::
+
+    Will disable ``delete_selected`` for all ``ModelAdmin``
+    Will lost delete confirm
+
