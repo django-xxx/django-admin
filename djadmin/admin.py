@@ -4,9 +4,10 @@ from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
 
-class DeleteModelAdmin():
-    admin.site.disable_action('delete_selected')
+admin.site.disable_action('delete_selected')
 
+
+class DeleteModelAdmin():
     actions = ['override_delete_selected']
 
     def override_delete_selected(self, request, obj):
