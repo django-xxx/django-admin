@@ -15,7 +15,7 @@ Installation
 Usage
 =====
 
-::
+Disable Action::
 
     from djadmin import DeleteModelAdmin
     from django.contrib import admin
@@ -33,6 +33,15 @@ Usage
     # Disable ``actions``
     class ZZZAdmin(admin.ModelAdmin):
         actions = None
+
+
+All Fields Readonly::
+
+    from djadmin import ReadonlyModelAdmin
+    from django.contrib import admin
+
+    class XXXAdmin(ReadonlyModelAdmin, admin.ModelAdmin):
+        pass
 
 
 Disadvantage

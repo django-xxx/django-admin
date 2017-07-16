@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from djadmin.admin import DeleteModelAdmin
+from djadmin.admin import DeleteModelAdmin, ReadonlyModelAdmin
