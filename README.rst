@@ -35,6 +35,15 @@ Disable Action::
         actions = None
 
 
+Export Excel::
+
+    from djadmin import ExportExcelModelAdmin
+    from django.contrib import admin
+
+    class XXXAdmin(ExportExcelModelAdmin, admin.ModelAdmin):
+        pass
+
+
 All Fields Readonly::
 
     from djadmin import ReadonlyModelAdmin

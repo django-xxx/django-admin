@@ -20,7 +20,7 @@ setup(
 
     packages=['djadmin'],
     py_modules=[],
-    install_requires=[],
+    install_requires=['django-excel-response2'],
 
     classifiers=[
         'Development Status :: 5 - Production/Stable',
