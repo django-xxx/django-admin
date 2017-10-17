@@ -61,6 +61,14 @@ Disable Editing::
         pass
 
 
+Disable Add/Delete::
+    from djadmin import ChangeOnlyModelAdmin
+    from django.contrib import admin
+
+    class XXXAdmin(ChangeOnlyModelAdmin, admin.ModelAdmin):
+        pass
+
+
 Disadvantage
 ============
 

@@ -63,3 +63,25 @@ class ReadOnlyModelAdmin(ReadonlyModelAdmin):
 
     def save_related(self, request, form, formsets, change):
         pass
+
+
+class ChangeOnlyModelAdmin(ReadonlyModelAdmin):
+    """ Disables add/delete capabilities. """
+
+    def __init__(self, *args, **kwargs):
+        super(ChangeOnlyModelAdmin, self).__init__(*args, **kwargs)
+
+    def get_actions(self, request):
+        actions = super(ChangeOnlyModelAdmin, self).get_actions(request)
+        if 'delete_selected' in actions:
+            del actions['delete_selected']
+        return actions
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def delete_model(self, request, obj):
+        pass
