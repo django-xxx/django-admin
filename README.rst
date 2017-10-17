@@ -53,6 +53,14 @@ All Fields Readonly::
         pass
 
 
+Disable Editing::
+    from djadmin import ReadOnlyModelAdmin
+    from django.contrib import admin
+
+    class XXXAdmin(ReadOnlyModelAdmin, admin.ModelAdmin):
+        pass
+
+
 Disadvantage
 ============
 

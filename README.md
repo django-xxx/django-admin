@@ -42,6 +42,14 @@ pip install django-admin
   class XXXAdmin(ReadonlyModelAdmin, admin.ModelAdmin):
       pass
   ```
+* Disable Editing
+  ```
+  from djadmin import ReadOnlyModelAdmin
+  from django.contrib import admin
+
+  class XXXAdmin(ReadOnlyModelAdmin, admin.ModelAdmin):
+      pass
+  ```
 
 ## Disadvantage
 * Will disable ``delete_selected`` for all ``ModelAdmin``
