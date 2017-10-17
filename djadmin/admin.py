@@ -31,6 +31,8 @@ class ExportExcelModelAdmin(object):
 
 class ReadonlyModelAdmin(object):
     def get_readonly_fields(self, request, obj=None):
+        if not hasattr(self, 'readonly_fields_exclude'):
+            self.readonly_fields_exclude = ()
         if obj:  # editing an existing object
             return tuple(set(self.readonly_fields) | set(f.name for f in self.model._meta.fields) - set(self.readonly_fields_exclude))
         return tuple(set(self.readonly_fields) - set(self.readonly_fields_exclude))
