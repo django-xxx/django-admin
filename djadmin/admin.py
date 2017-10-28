@@ -40,7 +40,7 @@ class AdvancedExportExcelModelAdmin(object):
         excel_item = [modeladmin.excel_item(query, field) for field in model_fields]
         return excel_item + list(modeladmin.add_extra_excel_fields(request, query)) if has_extra_excel_fields else excel_item
 
-    def export_excel(modeladmin, request, queryset):
+    def advanced_export_excel(modeladmin, request, queryset):
         has_excel_fields = hasattr(modeladmin, 'excel_fields')
         has_excel_fields_exclude = hasattr(modeladmin, 'excel_fields_exclude')
         has_extra_excel_fields = hasattr(modeladmin, 'extra_excel_fields')  # Add by call add_extra_excel_fields

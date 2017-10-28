@@ -37,11 +37,19 @@ Disable Action::
 
 Export Excel::
 
-    from djadmin import ExportExcelModelAdmin
+    from djadmin import ExportExcelModelAdmin, AdvancedExportExcelModelAdmin
     from django.contrib import admin
 
     class XXXAdmin(ExportExcelModelAdmin, admin.ModelAdmin):
         pass
+
+    class YYYAdmin(AdvancedExportExcelModelAdmin, admin.ModelAdmin):
+        excel_fields = ()
+        excel_fields_exclude = ()
+        extra_excel_fields = ()
+
+        def add_extra_excel_fields(self, request, query):
+            return []
 
 
 All Fields Readonly::

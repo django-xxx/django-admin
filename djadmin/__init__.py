@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from djadmin.admin import DeleteModelAdmin, ReadonlyModelAdmin, ExportExcelModelAdmin, ReadOnlyModelAdmin, ChangeOnlyModelAdmin
+from djadmin.admin import DeleteModelAdmin, ReadonlyModelAdmin, ExportExcelModelAdmin, AdvancedExportExcelModelAdmin, ReadOnlyModelAdmin, ChangeOnlyModelAdmin
