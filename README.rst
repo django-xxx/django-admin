@@ -62,6 +62,7 @@ All Fields Readonly::
 
 
 Disable Editing::
+
     from djadmin import ReadOnlyModelAdmin
     from django.contrib import admin
 
@@ -70,6 +71,7 @@ Disable Editing::
 
 
 Disable Add/Delete::
+
     from djadmin import ChangeOnlyModelAdmin
     from django.contrib import admin
 
