@@ -34,7 +34,7 @@ class AdvancedExportExcelModelAdmin(object):
 
     def excel_item(modeladmin, query, field):
         foo_field = 'get_{0}_display'.format(field)
-        return getattr(query, foo_field)() if hasattr(query, foo_field) else getattr(query, field)
+        return unicode(getattr(query, foo_field)() if hasattr(query, foo_field) else getattr(query, field))
 
     def excel_data(modeladmin, request, query, model_fields, has_extra_excel_fields):
         excel_item = [modeladmin.excel_item(query, field) for field in model_fields]
