@@ -69,7 +69,7 @@ class ReadonlyModelAdmin(object):
 
 class ReadOnlyModelAdmin(ReadonlyModelAdmin):
     """ Disables all editing capabilities. """
-    change_form_template = 'admin/view.html'
+    change_form_template = 'admin/readonly_form.html'
 
     def __init__(self, *args, **kwargs):
         super(ReadOnlyModelAdmin, self).__init__(*args, **kwargs)

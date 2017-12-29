@@ -58,6 +58,14 @@ pip install django-admin
   class XXXAdmin(ReadOnlyModelAdmin, admin.ModelAdmin):
       pass
   ```
+  * Should add ``django_admin`` in ``INSTALLED_APPS``
+    ```python
+    INSTALLED_APPS = [
+        ...
+        'django_admin',
+        ...
+    ]
+    ```
 * Disable Add/Delete
   ```python
   from djadmin import ChangeOnlyModelAdmin
