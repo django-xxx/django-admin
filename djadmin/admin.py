@@ -96,7 +96,7 @@ class ReadOnlyModelAdmin(ReadonlyModelAdmin):
         pass
 
 
-class ChangeOnlyModelAdmin(ReadonlyModelAdmin):
+class ChangeOnlyModelAdmin(object):
     """ Disables add/delete capabilities. """
 
     def __init__(self, *args, **kwargs):
