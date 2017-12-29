@@ -1,1 +1,1 @@
-include django_admin/templates/admin/*.html
+include djadmin/templates/admin/*.html
