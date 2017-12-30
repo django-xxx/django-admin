@@ -88,6 +88,17 @@ Disable Add/Delete::
         pass
 
 
+Disable Add/Change::
+
+  from djadmin import DeleteOnlyModelAdmin, DeleteonlyModelAdmin
+  from django.contrib import admin
+
+  class XXXAdmin(DeleteOnlyModelAdmin, admin.ModelAdmin):
+      # DeleteOnlyModelAdmin - All Fields Default Readonly
+      # DeleteonlyModelAdmin - All Fields Not Default Readonly
+      pass
+
+
 Disadvantage
 ============
 
