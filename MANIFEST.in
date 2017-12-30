@@ -1,1 +1,2 @@
 include djadmin/templates/admin/*.html
+include djadmin/templatetags/*.py
