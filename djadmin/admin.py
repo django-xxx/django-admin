@@ -42,6 +42,7 @@ class AdvancedExportExcelModelAdmin(object):
         return excel_item + list(modeladmin.add_extra_excel_fields(request, query)) if has_extra_excel_fields else excel_item
 
     def advanced_export_excel(modeladmin, request, queryset):
+        has_excel_headers = hasattr(modeladmin, 'excel_headers')
         has_excel_fields = hasattr(modeladmin, 'excel_fields')
         has_excel_fields_exclude = hasattr(modeladmin, 'excel_fields_exclude')
         has_extra_excel_fields = hasattr(modeladmin, 'extra_excel_fields')  # Add by call add_extra_excel_fields
@@ -50,7 +51,7 @@ class AdvancedExportExcelModelAdmin(object):
         if has_excel_fields_exclude:
             model_fields = [field for field in model_fields if field not in set(modeladmin.excel_fields_exclude)]
 
-        excel_data = [model_fields + list(modeladmin.extra_excel_fields) if has_extra_excel_fields else model_fields]
+        excel_data = [modeladmin.excel_headers] if has_excel_headers else [model_fields + list(modeladmin.extra_excel_fields) if has_extra_excel_fields else model_fields]
         excel_data += [modeladmin.excel_data(request, query, model_fields, has_extra_excel_fields) for query in queryset]
 
         return ExcelResponse(excel_data, output_name=modeladmin.model._meta.verbose_name_plural)
