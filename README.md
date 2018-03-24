@@ -9,8 +9,8 @@ pip install django-admin
 ## Usage
 * Disable Action
   ```python
-  from djadmin import DeleteModelAdmin
   from django.contrib import admin
+  from django_admin import DeleteModelAdmin
 
   # Override ``delete_selected``, call ``delete_model`` for each when ``delete_selected``
   class XXXAdmin(admin.ModelAdmin, DeleteModelAdmin):
@@ -28,8 +28,8 @@ pip install django-admin
   ```
 * Export Excel
   ```python
-  from djadmin import ExportExcelModelAdmin, AdvancedExportExcelModelAdmin
   from django.contrib import admin
+  from django_admin import ExportExcelModelAdmin, AdvancedExportExcelModelAdmin
 
   class XXXAdmin(ExportExcelModelAdmin, admin.ModelAdmin):
       pass
@@ -44,40 +44,40 @@ pip install django-admin
   ```
 * All Fields Readonly
   ```python
-  from djadmin import ReadonlyModelAdmin
   from django.contrib import admin
+  from django_admin import ReadonlyModelAdmin
 
   class XXXAdmin(ReadonlyModelAdmin, admin.ModelAdmin):
       pass
   ```
 * Disable Editing
   ```python
-  from djadmin import ReadOnlyModelAdmin
   from django.contrib import admin
+  from django_admin import ReadOnlyModelAdmin
 
   class XXXAdmin(ReadOnlyModelAdmin, admin.ModelAdmin):
       pass
   ```
-  * Should add ``djadmin`` in ``INSTALLED_APPS``
+  * Should add ``django_admin`` in ``INSTALLED_APPS``
     ```python
     INSTALLED_APPS = [
         ...
-        'djadmin',
+        'django_admin',
         ...
     ]
     ```
 * Disable Add/Delete
   ```python
-  from djadmin import ChangeOnlyModelAdmin
   from django.contrib import admin
+  from django_admin import ChangeOnlyModelAdmin
 
   class XXXAdmin(ChangeOnlyModelAdmin, admin.ModelAdmin):
       pass
   ```
 * Disable Add/Change
   ```python
-  from djadmin import DeleteOnlyModelAdmin, DeleteonlyModelAdmin
   from django.contrib import admin
+  from django_admin import DeleteOnlyModelAdmin, DeleteonlyModelAdmin
 
   class XXXAdmin(DeleteOnlyModelAdmin, admin.ModelAdmin):
       # DeleteOnlyModelAdmin - All Fields Default Readonly

@@ -18,7 +18,7 @@ setup(
     author='Hackathon',
     author_email='kimi.huang@brightcells.com',
 
-    packages=['djadmin'],
+    packages=['django_admin'],
     py_modules=[],
     install_requires=['django-excel-response2>=2.0.8'],
     include_package_data=True,

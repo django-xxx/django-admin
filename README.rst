@@ -17,8 +17,8 @@ Usage
 
 Disable Action::
 
-    from djadmin import DeleteModelAdmin
     from django.contrib import admin
+    from django_admin import DeleteModelAdmin
 
     # Override action ``delete_selected``, call ``delete_model`` for each when ``delete_selected``
     class XXXAdmin(admin.ModelAdmin, DeleteModelAdmin):
@@ -37,8 +37,8 @@ Disable Action::
 
 Export Excel::
 
-    from djadmin import ExportExcelModelAdmin, AdvancedExportExcelModelAdmin
     from django.contrib import admin
+    from django_admin import ExportExcelModelAdmin, AdvancedExportExcelModelAdmin
 
     class XXXAdmin(ExportExcelModelAdmin, admin.ModelAdmin):
         pass
@@ -54,8 +54,8 @@ Export Excel::
 
 All Fields Readonly::
 
-    from djadmin import ReadonlyModelAdmin
     from django.contrib import admin
+    from django_admin import ReadonlyModelAdmin
 
     class XXXAdmin(ReadonlyModelAdmin, admin.ModelAdmin):
         pass
@@ -63,17 +63,17 @@ All Fields Readonly::
 
 Disable Editing::
 
-    from djadmin import ReadOnlyModelAdmin
     from django.contrib import admin
+    from django_admin import ReadOnlyModelAdmin
 
     class XXXAdmin(ReadOnlyModelAdmin, admin.ModelAdmin):
         pass
 
-    * Should add ``djadmin`` in ``INSTALLED_APPS``
+    * Should add ``django_admin`` in ``INSTALLED_APPS``
     ```python
     INSTALLED_APPS = [
         ...
-        'djadmin',
+        'django_admin',
         ...
     ]
     ```
@@ -81,8 +81,8 @@ Disable Editing::
 
 Disable Add/Delete::
 
-    from djadmin import ChangeOnlyModelAdmin
     from django.contrib import admin
+    from django_admin import ChangeOnlyModelAdmin
 
     class XXXAdmin(ChangeOnlyModelAdmin, admin.ModelAdmin):
         pass
@@ -90,8 +90,8 @@ Disable Add/Delete::
 
 Disable Add/Change::
 
-  from djadmin import DeleteOnlyModelAdmin, DeleteonlyModelAdmin
   from django.contrib import admin
+  from django_admin import DeleteOnlyModelAdmin, DeleteonlyModelAdmin
 
   class XXXAdmin(DeleteOnlyModelAdmin, admin.ModelAdmin):
       # DeleteOnlyModelAdmin - All Fields Default Readonly
