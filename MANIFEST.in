@@ -1,2 +1,2 @@
-include djadmin/templates/admin/*.html
-include djadmin/templatetags/*.py
+include django_admin/templates/admin/*.html
+include django_admin/templatetags/*.py
