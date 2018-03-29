@@ -44,6 +44,7 @@ Export Excel::
         pass
 
     class YYYAdmin(AdvancedExportExcelModelAdmin, admin.ModelAdmin):
+        excel_headers = ()
         excel_fields = ()
         excel_fields_exclude = ()
         extra_excel_fields = ()

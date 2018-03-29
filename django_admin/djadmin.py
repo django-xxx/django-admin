@@ -25,7 +25,7 @@ class ExportExcelModelAdmin(object):
     actions = ['export_excel']
 
     def export_excel(modeladmin, request, queryset):
-        force_csv = (hasattr(settings, 'DJANGO_EXCEL_RESPONSE') or settings.DJANGO_EXCEL_RESPONSE) or (hasattr(modeladmin, 'force_csv') and modeladmin.force_csv)
+        force_csv = (hasattr(settings, 'DJANGO_EXCEL_RESPONSE') and settings.DJANGO_EXCEL_RESPONSE) or (hasattr(modeladmin, 'force_csv') and modeladmin.force_csv)
         return ExcelResponse(queryset, output_name=modeladmin.model._meta.verbose_name_plural, force_csv=force_csv)
 
     export_excel.short_description = _(u'Export selected %(verbose_name_plural)s as Excel')
