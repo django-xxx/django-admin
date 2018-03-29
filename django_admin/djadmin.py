@@ -55,7 +55,7 @@ class AdvancedExportExcelModelAdmin(object):
         excel_data = [modeladmin.excel_headers] if has_excel_headers else [model_fields + list(modeladmin.extra_excel_fields) if has_extra_excel_fields else model_fields]
         excel_data += [modeladmin.excel_data(request, query, model_fields, has_extra_excel_fields) for query in queryset]
 
-        force_csv = (hasattr(settings, 'DJANGO_EXCEL_RESPONSE') or settings.DJANGO_EXCEL_RESPONSE) or (hasattr(modeladmin, 'force_csv') and modeladmin.force_csv)
+        force_csv = (hasattr(settings, 'DJANGO_EXCEL_RESPONSE') and settings.DJANGO_EXCEL_RESPONSE) or (hasattr(modeladmin, 'force_csv') and modeladmin.force_csv)
 
         return ExcelResponse(excel_data, output_name=modeladmin.model._meta.verbose_name_plural, force_csv=force_csv)
 
