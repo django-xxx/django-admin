@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from excel_response2 import ExcelResponse
 
 
-if not hasattr(settings, 'DISABLE_ACTION') or settings.DISABLE_ACTION:
+if not hasattr(settings, 'DJANGO_ADMIN_DISABLE_DELETE_SELECTED') or settings.DJANGO_ADMIN_DISABLE_DELETE_SELECTED:
     admin.site.disable_action('delete_selected')
 
 
