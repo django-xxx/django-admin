@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 
+import six
 from django.conf import settings
 from django.contrib import admin
+from django.contrib.admin.utils import model_format_dict
+from django.db.models.fields import BLANK_CHOICE_DASH
 from django.utils.timezone import template_localtime
 from django.utils.translation import ugettext_lazy as _
 from excel_response2 import ExcelResponse
@@ -9,6 +12,22 @@ from excel_response2 import ExcelResponse
 
 if not hasattr(settings, 'DJANGO_ADMIN_DISABLE_DELETE_SELECTED') or settings.DJANGO_ADMIN_DISABLE_DELETE_SELECTED:
     admin.site.disable_action('delete_selected')
+
+
+class AdvancedActionsModelAdmin(object):
+    def get_action_choices(self, request, default_choices=BLANK_CHOICE_DASH):
+        """
+        Return a list of choices for use in a form object.  Each choice is a
+        tuple (name, description).
+        """
+        actions_exclude = self.actions_exclude if hasattr(self, 'actions_exclude') else []
+        choices = [] + default_choices
+        for func, name, description in six.itervalues(self.get_actions(request)):
+            if name in actions_exclude:
+                continue
+            choice = (name, description % model_format_dict(self.opts))
+            choices.append(choice)
+        return choices
 
 
 class DeleteModelAdmin(object):
