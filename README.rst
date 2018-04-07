@@ -91,13 +91,40 @@ Disable Add/Delete::
 
 Disable Add/Change::
 
-  from django.contrib import admin
-  from django_admin import DeleteOnlyModelAdmin, DeleteonlyModelAdmin
+    from django.contrib import admin
+    from django_admin import DeleteOnlyModelAdmin, DeleteonlyModelAdmin
 
-  class XXXAdmin(DeleteOnlyModelAdmin, admin.ModelAdmin):
-      # DeleteOnlyModelAdmin - All Fields Default Readonly
-      # DeleteonlyModelAdmin - All Fields Not Default Readonly
-      pass
+    class XXXAdmin(DeleteOnlyModelAdmin, admin.ModelAdmin):
+        # DeleteOnlyModelAdmin - All Fields Default Readonly
+        # DeleteonlyModelAdmin - All Fields Not Default Readonly
+        pass
+
+    * Should add ``django_admin`` in ``INSTALLED_APPS``
+    ```python
+    INSTALLED_APPS = [
+        ...
+        'django_admin',
+        ...
+    ]
+    ```
+
+
+Disable Delete/Change::
+
+    from django.contrib import admin
+    from django_admin import AddOnlyModelAdmin
+
+    class XXXAdmin(AddOnlyModelAdmin, admin.ModelAdmin):
+        pass
+
+    * Should add ``django_admin`` in ``INSTALLED_APPS``
+    ```python
+    INSTALLED_APPS = [
+        ...
+        'django_admin',
+        ...
+    ]
+    ```
 
 
 Disadvantage

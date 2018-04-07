@@ -128,3 +128,23 @@ class DeleteonlyModelAdmin(object):
 
 class DeleteOnlyModelAdmin(ReadonlyModelAdmin, DeleteonlyModelAdmin):
     """ Disables add/change capabilities, fields readonly. """
+
+
+class AddOnlyModelAdmin(ReadonlyModelAdmin):
+    """ Disables delete/change capabilities, fields readonly.. """
+    change_form_template = 'admin/addonly_form.html'
+
+    def __init__(self, *args, **kwargs):
+        super(AddOnlyModelAdmin, self).__init__(*args, **kwargs)
+
+    def get_actions(self, request):
+        actions = super(AddOnlyModelAdmin, self).get_actions(request)
+        if 'delete_selected' in actions:
+            del actions['delete_selected']
+        return actions
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def delete_model(self, request, obj):
+        pass

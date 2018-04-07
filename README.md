@@ -85,6 +85,30 @@ pip install django-admin
       # DeleteonlyModelAdmin - All Fields Not Default Readonly
       pass
   ```
+  * Should add ``django_admin`` in ``INSTALLED_APPS``
+    ```python
+    INSTALLED_APPS = [
+        ...
+        'django_admin',
+        ...
+    ]
+    ```
+* Disable Delete/Change
+  ```python
+  from django.contrib import admin
+  from django_admin import AddOnlyModelAdmin
+
+  class XXXAdmin(AddOnlyModelAdmin, admin.ModelAdmin):
+      pass
+  ```
+  * Should add ``django_admin`` in ``INSTALLED_APPS``
+    ```python
+    INSTALLED_APPS = [
+        ...
+        'django_admin',
+        ...
+    ]
+    ```
 
 ## Disadvantage
 * Will disable ``delete_selected`` for all ``ModelAdmin``
