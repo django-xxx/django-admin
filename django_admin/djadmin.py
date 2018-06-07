@@ -82,12 +82,21 @@ class AdvancedExportExcelModelAdmin(object):
 
 
 class ReadonlyModelAdmin(object):
+    """ Readonly for Update. """
     def get_readonly_fields(self, request, obj=None):
         if not hasattr(self, 'readonly_fields_exclude'):
             self.readonly_fields_exclude = ()
         if obj:  # editing an existing object
             return tuple(set(self.readonly_fields) | set(f.name for f in self.model._meta.fields) - set(self.readonly_fields_exclude))
         return tuple(set(self.readonly_fields) - set(self.readonly_fields_exclude))
+
+
+class Readonly2ModelAdmin(object):
+    """ Readonly for Add/Update. """
+    def get_readonly_fields(self, request, obj=None):
+        if not hasattr(self, 'readonly_fields_exclude'):
+            self.readonly_fields_exclude = ()
+        return tuple(set(self.readonly_fields) | set(f.name for f in self.model._meta.fields) - set(self.readonly_fields_exclude))
 
 
 class ReadOnlyModelAdmin(ReadonlyModelAdmin):

@@ -56,9 +56,14 @@ Export Excel::
 All Fields Readonly::
 
     from django.contrib import admin
-    from django_admin import ReadonlyModelAdmin
+    from django_admin import ReadonlyModelAdmin, Readonly2ModelAdmin
 
     class XXXAdmin(ReadonlyModelAdmin, admin.ModelAdmin):
+        """ Readonly for Update. """
+        pass
+
+    class XXXAdmin(Readonly2ModelAdmin, admin.ModelAdmin):
+        """ Readonly for Add/Update. """
         pass
 
 
