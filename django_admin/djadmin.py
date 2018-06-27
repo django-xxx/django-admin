@@ -176,3 +176,16 @@ class AddOnlyModelAdmin(ReadonlyModelAdmin):
 
     def delete_model(self, request, obj):
         pass
+
+
+class SpecifiedQuantityQuerySetModelAdmin(object):
+    """ Can Only Exist Specified Quantity QuerySet """
+    def save_model(self, request, obj, form, change):
+        # Assign ``specified_quantity_queryset`` as 1 when ``specified_quantity_queryset`` not exists
+        if not hasattr(self, 'specified_quantity_queryset'):
+            self.specified_quantity_queryset = 1
+        # Assert whether ``specified_quantity_queryset`` is ``int`` or not
+        assert isinstance(self.specified_quantity_queryset, int)
+        if self.model.objects.count() >= self.specified_quantity_queryset:
+            return
+        obj.save()
