@@ -182,7 +182,7 @@ class SpecifiedQuantityQuerySetModelAdmin(object):
     """ Can Only Exist Specified Quantity QuerySet """
     def save_model(self, request, obj, form, change):
         # Change or Add
-        if not change:
+        if change:
             obj.save()
         # Assign ``specified_quantity_queryset`` as 1 when ``specified_quantity_queryset`` not exists
         if not hasattr(self, 'specified_quantity_queryset'):
