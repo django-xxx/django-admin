@@ -17,8 +17,7 @@ if not hasattr(settings, 'DJANGO_ADMIN_DISABLE_DELETE_SELECTED') or settings.DJA
 class AdvancedActionsModelAdmin(object):
     def get_action_choices(self, request, default_choices=BLANK_CHOICE_DASH):
         """
-        Return a list of choices for use in a form object.  Each choice is a
-        tuple (name, description).
+        Return a list of choices for use in a form object.  Each choice is a tuple (name, description).
         """
         actions_exclude = self.actions_exclude if hasattr(self, 'actions_exclude') else []
         choices = [] + default_choices
@@ -63,6 +62,7 @@ class AdvancedExportExcelModelAdmin(object):
 
     def advanced_export_excel(modeladmin, request, queryset):
         has_excel_headers = hasattr(modeladmin, 'excel_headers')
+        has_excel_headers_mapping = hasattr(modeladmin, 'excel_headers_mapping')
         has_excel_fields = hasattr(modeladmin, 'excel_fields')
         has_excel_fields_exclude = hasattr(modeladmin, 'excel_fields_exclude')
         has_extra_excel_fields = hasattr(modeladmin, 'extra_excel_fields')  # Add by call add_extra_excel_fields
@@ -71,7 +71,10 @@ class AdvancedExportExcelModelAdmin(object):
         if has_excel_fields_exclude:
             model_fields = [field for field in model_fields if field not in set(modeladmin.excel_fields_exclude)]
 
-        excel_data = [modeladmin.excel_headers] if has_excel_headers else [model_fields + list(modeladmin.extra_excel_fields) if has_extra_excel_fields else model_fields]
+        excel_headers = modeladmin.excel_headers if has_excel_headers else (model_fields + list(modeladmin.extra_excel_fields) if has_extra_excel_fields else model_fields)
+        excel_headers = [(modeladmin.excel_headers_mapping.get('header') or header) for header in excel_headers] if has_excel_headers_mapping else excel_headers
+
+        excel_data = [excel_headers]
         excel_data += [modeladmin.excel_data(request, query, model_fields, has_extra_excel_fields) for query in queryset]
 
         force_csv = (hasattr(settings, 'DJANGO_EXCEL_RESPONSE') and settings.DJANGO_EXCEL_RESPONSE) or (hasattr(modeladmin, 'force_csv') and modeladmin.force_csv)
