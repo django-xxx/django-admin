@@ -72,7 +72,7 @@ class AdvancedExportExcelModelAdmin(object):
             model_fields = [field for field in model_fields if field not in set(modeladmin.excel_fields_exclude)]
 
         excel_headers = modeladmin.excel_headers if has_excel_headers else (model_fields + list(modeladmin.extra_excel_fields) if has_extra_excel_fields else model_fields)
-        excel_headers = [(modeladmin.excel_headers_mapping.get('header') or header) for header in excel_headers] if has_excel_headers_mapping else excel_headers
+        excel_headers = [(modeladmin.excel_headers_mapping.get(header) or header) for header in excel_headers] if has_excel_headers_mapping else excel_headers
 
         excel_data = [excel_headers]
         excel_data += [modeladmin.excel_data(request, query, model_fields, has_extra_excel_fields) for query in queryset]
