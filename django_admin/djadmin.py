@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import six
+from django import get_version
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.admin.utils import model_format_dict
@@ -11,7 +12,24 @@ from excel_response2 import ExcelResponse
 
 
 if not hasattr(settings, 'DJANGO_ADMIN_DISABLE_DELETE_SELECTED') or settings.DJANGO_ADMIN_DISABLE_DELETE_SELECTED:
-    admin.site.disable_action('delete_selected')
+    # Django 2.x will raise error as below.
+    # TODO: Solution
+    #
+    #       File "/Users/hqm/Envs/py37/lib/python3.7/site-packages/django_admin/__init__.py", line 3, in <module>
+    #     from django_admin.djadmin import DeleteModelAdmin, ReadonlyModelAdmin, Readonly2ModelAdmin, ExportExcelModelAdmin, AdvancedExportExcelModelAdmin, ReadOnlyModelAdmin, ChangeOnlyModelAdmin, DeleteonlyModelAdmin, DeleteOnlyModelAdmin, AddOnlyModelAdmin, AdvancedActionsModelAdmin, SpecifiedQuantityQuerySetModelAdmin
+    #   File "/Users/hqm/Envs/py37/lib/python3.7/site-packages/django_admin/djadmin.py", line 15, in <module>
+    #     admin.site.disable_action('delete_selected')
+    #   File "/Users/hqm/Envs/py37/lib/python3.7/site-packages/django/utils/functional.py", line 256, in inner
+    #     self._setup()
+    #   File "/Users/hqm/Envs/py37/lib/python3.7/site-packages/django/contrib/admin/sites.py", line 530, in _setup
+    #     AdminSiteClass = import_string(apps.get_app_config('admin').default_site)
+    #   File "/Users/hqm/Envs/py37/lib/python3.7/site-packages/django/apps/registry.py", line 153, in get_app_config
+    #     self.check_apps_ready()
+    #   File "/Users/hqm/Envs/py37/lib/python3.7/site-packages/django/apps/registry.py", line 135, in check_apps_ready
+    #     raise AppRegistryNotReady("Apps aren't loaded yet.")
+    # django.core.exceptions.AppRegistryNotReady: Apps aren't loaded yet.
+    if get_version()[0] == 1:
+        admin.site.disable_action('delete_selected')
 
 
 class AdvancedActionsModelAdmin(object):
