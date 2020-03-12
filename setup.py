@@ -20,7 +20,7 @@ setup(
 
     packages=['django_admin'],
     py_modules=[],
-    install_requires=['django-excel-response2>=2.0.8'],
+    install_requires=['django-excel-response2>=3.0.0'],
     include_package_data=True,
 
     classifiers=[
