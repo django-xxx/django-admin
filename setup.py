@@ -11,7 +11,8 @@ setup(
     version=version,
     keywords='Django Admin Extensions',
     description='Django Admin Extensions',
-    long_description=open('README.rst').read(),
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
 
     url='https://github.com/django-xxx/django-admin',
 
@@ -20,7 +21,7 @@ setup(
 
     packages=['django_admin'],
     py_modules=[],
-    install_requires=['django-excel-response2>=3.0.0'],
+    install_requires=['django-excel-response2>=3.0.0', 'django-six'],
     include_package_data=True,
 
     classifiers=[

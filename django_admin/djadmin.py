@@ -7,8 +7,8 @@ from django.contrib import admin
 from django.contrib.admin.utils import model_format_dict
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django.utils.timezone import template_localtime
-from django.utils.translation import ugettext_lazy as _
 from django_excel_response import ExcelResponse
+from django_six import gettext_lazy as _
 
 
 if not hasattr(settings, 'DJANGO_ADMIN_DISABLE_DELETE_SELECTED') or settings.DJANGO_ADMIN_DISABLE_DELETE_SELECTED:
@@ -72,7 +72,7 @@ class AdvancedExportExcelModelAdmin(object):
 
     def excel_item(modeladmin, query, field):
         foo_field = 'get_{0}_display'.format(field)
-        return unicode(getattr(query, foo_field)() if hasattr(query, foo_field) else template_localtime(getattr(query, field)))
+        return str(getattr(query, foo_field)() if hasattr(query, foo_field) else template_localtime(getattr(query, field)))
 
     def excel_data(modeladmin, request, query, model_fields, has_extra_excel_fields):
         excel_item = [modeladmin.excel_item(query, field) for field in model_fields]
